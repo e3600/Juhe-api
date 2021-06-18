@@ -1,6 +1,5 @@
 <?php
-namespace "JyApi";
-
+namespace "ijingyi\juhe-api";
 
 class JyApi
 {
