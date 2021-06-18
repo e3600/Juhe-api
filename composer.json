@@ -1,6 +1,7 @@
 {
     "name": "juhe-api/test",
     "description": "my name guozi",
+    "keywords" : [ "wechat", "weixin", "qrcode"],
     "license": "MIT",
     "authors": [
         {
