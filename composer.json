@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "juhe-api/test": "master"
+        "juhe-api/test": "dev-master"
     },
     "version": "1.0.0"
 }
