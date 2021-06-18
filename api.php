@@ -1,5 +1,5 @@
 <?php
-namespace "juheApi";
+namespace JuheApi;
 
 class Test
 {

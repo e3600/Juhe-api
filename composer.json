@@ -3,7 +3,7 @@
     "description": "my name guozi",
     "keywords" : [ "wechat", "weixin", "qrcode"],
     "license": "MIT",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "authors": [
         {
             "name": "guozi",
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-          "juheApi\\": "src/"
+          "JuheApi\\": "src/"
         },
         "files": [
           "api.php"
