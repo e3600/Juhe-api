@@ -8,6 +8,8 @@
             "email": "413188828@163.com"
         }
     ],
-    "require": {},
+    "require": {
+        "juhe-api/test": "master"
+    },
     "version": "1.0.0"
 }
