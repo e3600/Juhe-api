@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "juhe-api/test": "dev-master"
+        "php": ">=7.0"
     },
     "version": "1.0.0"
 }
