@@ -3,6 +3,7 @@
     "description": "my name guozi",
     "keywords" : [ "wechat", "weixin", "qrcode"],
     "license": "MIT",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "guozi",
@@ -12,5 +13,8 @@
     "require": {
         "php": ">=7.0"
     },
-    "version": "1.0.0"
+    "packagist": {
+        "type": "composer",
+        "url": "https://packagist.phpcomposer.com"
+    }
 }
