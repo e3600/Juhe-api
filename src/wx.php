@@ -1,7 +1,8 @@
 <?php
 namespace "juheApi";
 
-class Test
+
+class wx
 {
 
     function __construct()
@@ -10,6 +11,6 @@ class Test
     }
 
     public function getList(){
-        return ['aa'=>123, 'bb' => 456];
+        return ['w'=>123, 'x' => 456];
     }
 }

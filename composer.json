@@ -16,5 +16,13 @@
     "packagist": {
         "type": "composer",
         "url": "https://packagist.phpcomposer.com"
+    },
+    "autoload": {
+        "psr-4": {
+          "juheApi\\": "src/"
+        },
+        "files": [
+          "api.php"
+        ]
     }
 }
