@@ -1,0 +1,12 @@
+{
+    "name": "juhe-api/test",
+    "description": "my name guozi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "guozi",
+            "email": "413188828@163.com"
+        }
+    ],
+    "require": {}
+}
