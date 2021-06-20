@@ -1,17 +1,18 @@
 {
     "name": "ijingyi/juhe-api",
-    "description": "my name guozi",
-    "keywords" : [ "wechat", "weixin", "qrcode"],
+    "description": "精易科技",
+    "keywords" : [ "juhe", "api"],
     "license": "MIT",
     "version": "1.0.3",
     "authors": [
         {
-            "name": "guozi",
-            "email": "413188828@163.com"
+            "name": "果子",
+            "email": "33157@163.com"
         }
     ],
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "http"
     },
     "packagist": {
         "type": "composer",
