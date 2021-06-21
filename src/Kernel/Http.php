@@ -1,27 +1,27 @@
 <?php
+
 namespace JuheApi\Kernel;
 
-use JuheApi\Kernel\Response;
-use GuzzleHttp\Client;
+use JuheApi\Kernel\Response as Client;
 
-class Http extends Response
+class Http
 {
     public static function httpGet(string $url, array $query = [])
     {
         return self::request($url, 'GET', ['query' => $query]);
     }
     
-    public function httpPost(string $url, array $data = [])
+    public static function httpPost(string $url, array $data = [])
     {
-        return $this->request($url, 'POST', ['form_params' => $data]);
+        return self::request($url, 'POST', ['form_params' => $data]);
     }
     
-    public function httpPostJson(string $url, array $data = [], array $query = [])
+    public static function httpPostJson(string $url, array $data = [], array $query = [])
     {
-        return $this->request($url, 'POST', ['query' => $query, 'json' => $data]);
+        return self::request($url, 'POST', ['query' => $query, 'json' => $data]);
     }
     
-    public function httpUpload(string $url, array $files = [], array $form = [], array $query = [])
+    public static function httpUpload(string $url, array $files = [], array $form = [], array $query = [])
     {
         $multipart = [];
         $headers   = [];
@@ -44,7 +44,7 @@ class Http extends Response
             $multipart[] = compact('name', 'contents');
         }
         
-        return $this->request(
+        return self::request(
             $url,
             'POST',
             [
@@ -57,16 +57,9 @@ class Http extends Response
         );
     }
     
-   public static function request($url, $method = 'GET', array $options = [], $returnRaw = false)
+    public static function request($url, $method = 'GET', array $options = [], $returnRaw = false)
     {
         $client = new Client();
-        $res    = $client->request($method, $url, $options);
-        var_dump($res);
-        return $res;
-    }
-    
-    public function requestRaw(string $url, $method = 'GET', array $options = [])
-    {
-        return Response::buildFromPsrResponse($this->request($url, $method, $options, true));
+        return $client->request($method, $url, $options);
     }
 }
