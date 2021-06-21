@@ -2,9 +2,10 @@
 
 namespace JuheApi\Kernel;
 
-use JuheApi\Kernel\Response as Client;
+use GuzzleHttp\Client;
+use JuheApi\BasicService\BaseConfig;
 
-class Http
+class Http extends BaseConfig
 {
     public static function httpGet(string $url, array $query = [])
     {
@@ -59,7 +60,21 @@ class Http
     
     public static function request($url, $method = 'GET', array $options = [], $returnRaw = false)
     {
+        if (stripos($url, 'http') === false) {
+            $url = BaseConfig::$Config['requeseUrl'] . $url;
+        }
         $client = new Client();
-        return $client->request($method, $url, $options);
+        return self::handleResponse($client->request($method, $url, $options));
+    }
+    
+    /**
+     * 处理响应内容
+     *
+     * @param $request
+     * @return mixed
+     */
+    public static function handleResponse($request)
+    {
+        return $request->getBody()->getContents();
     }
 }
