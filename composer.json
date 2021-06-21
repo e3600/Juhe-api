@@ -12,7 +12,8 @@
     ],
     "require": {
         "php": ">=7.0",
-        "http"
+        "ijingyi/http": ">=1.0",
+        "guzzlehttp/guzzle": "^6.2 || ^7.0"
     },
     "packagist": {
         "type": "composer",
@@ -21,9 +22,6 @@
     "autoload": {
         "psr-4": {
           "JuheApi\\": "src/"
-        },
-        "files": [
-          "api.php"
-        ]
+        }
     }
 }
