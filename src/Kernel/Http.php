@@ -3,9 +3,8 @@
 namespace JuheApi\Kernel;
 
 use GuzzleHttp\Client;
-use JuheApi\BasicService\BaseConfig;
 
-class Http extends BaseConfig
+class Http
 {
     public static function httpGet(string $url, array $query = [])
     {
@@ -60,10 +59,8 @@ class Http extends BaseConfig
     
     public static function request($url, $method = 'GET', array $options = [], $returnRaw = false)
     {
-        if (stripos($url, 'http') === false) {
-            $url = BaseConfig::$Config['requeseUrl'] . $url;
-        }
-        $client = new Client();
+        $options['http_errors'] = false;
+        $client                 = new Client();
         return self::handleResponse($client->request($method, $url, $options));
     }
     

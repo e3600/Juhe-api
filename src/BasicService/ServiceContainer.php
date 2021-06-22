@@ -4,23 +4,25 @@ namespace JuheApi\BasicService;
 
 use Pimple\Container;
 use JuheApi\Kernel\Response;
+use JuheApi\BasicService\BaseConfig;
 
 class ServiceContainer extends Container
 {
     use Response;
-    use CheckConfig;
+    use BaseConfig;
+    
     protected $config = [];
+    
     /**
      * Constructor.
      *
      * @param array       $config
-     * @param array       $prepends
+     * @param string      $serverMark
      * @param string|null $id
      */
-    public function __construct(array $config = [], array $prepends = [], string $id = null)
+    public function __construct(array $config = [], $serverMark = '')
     {
-        $this->checkConfig($config);
-        $this->config = $config;
+        $this->config = $this->initConfig($config, $serverMark);
         $this->registerProviders($this->getProviders());
     }
     

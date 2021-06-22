@@ -12,10 +12,10 @@ class ServiceProvider
         $this->config = $config;
     }
     
-    public function login()
+    public function getToken()
     {
         return Http::httpPostJson(
-            sprintf('k/%s/WxMp', $this->config['project_key']),
+            sprintf('%s/k/%s', $this->config['requeseUrl'], $this->config['config_key']),
             ['action' => 'getToken']
         );
     }
