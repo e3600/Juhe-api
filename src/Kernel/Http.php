@@ -28,7 +28,7 @@ class Http
         
         if (isset($form['filename'])) {
             $headers = [
-                'Content-Disposition' => 'form-data; name="media"; filename="' . $form['filename'] . '"',
+                'Content-Disposition' => 'form-data; name="file"; filename="' . $form['filename'] . '"',
             ];
         }
         
@@ -43,16 +43,16 @@ class Http
         foreach ($form as $name => $contents) {
             $multipart[] = compact('name', 'contents');
         }
-        
+
         return self::request(
             $url,
             'POST',
             [
                 'query'           => $query,
                 'multipart'       => $multipart,
-                'connect_timeout' => 30,
-                'timeout'         => 30,
-                'read_timeout'    => 30,
+                'connect_timeout' => 60,
+                'timeout'         => 60,
+                'read_timeout'    => 60,
             ]
         );
     }

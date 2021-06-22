@@ -4,21 +4,18 @@ namespace JuheApi\ReplyMsg;
 
 use JuheApi\Kernel\XML;
 
-trait Text
+trait Image
 {
-    public function Text($Text)
+    public function Image($MediaId)
     {
         exit(XML::build([
             'ToUserName'   => $this->message['FromUserName'],
             'FromUserName' => $this->message['ToUserName'],
             'CreateTime'   => time(),
-            'MsgType'      => 'text',
-            'Content'      => $Text,
+            'MsgType'      => 'image',
+            'Image'        => [
+                'MediaId' => $MediaId,
+            ],
         ]));
-    }
-    
-    public function Raw($value)
-    {
-        exit($value);
     }
 }
