@@ -20,7 +20,8 @@ trait BaseConfig
     protected $ConfigKey = [
         'CONFIGKEY_DTZ'    => 'now9m1s7s8pqmzgclzdxwi3kwysvxiidygnc6lrg',
         'CONFIGKEY_DTZFSZ' => 'sp3cisakybfmpincssbheye4zney7iyph6yyukpi',
-        'CONFIGKEY_NDD' => 'j8qaafkegt3kmirhhoj7hzy8eswyx1wcmwt1mmpb',
+        'CONFIGKEY_NDD'    => 'j8qaafkegt3kmirhhoj7hzy8eswyx1wcmwt1mmpb',
+        'CONFIGKEY_Py'     => '5r9s6z4wpicb9y61zifr3jhm5wsknyktj1e08npt',
     ];
     
     /**
