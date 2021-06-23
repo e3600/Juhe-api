@@ -16,9 +16,9 @@ class Http
         return self::request($url, 'POST', ['form_params' => $data]);
     }
     
-    public static function httpPostJson(string $url, array $data = [], array $query = [])
+    public static function httpPostJson(string $url, array $data = [], array $query = [], $returnJson)
     {
-        return self::request($url, 'POST', ['query' => $query, 'json' => $data]);
+        return self::request($url, 'POST', ['query' => $query, 'json' => $data], $returnJson);
     }
     
     public static function httpUpload(string $url, array $files = [], array $form = [], array $query = [])
@@ -43,7 +43,7 @@ class Http
         foreach ($form as $name => $contents) {
             $multipart[] = compact('name', 'contents');
         }
-
+        
         return self::request(
             $url,
             'POST',
@@ -57,11 +57,11 @@ class Http
         );
     }
     
-    public static function request($url, $method = 'GET', array $options = [], $returnRaw = false)
+    public static function request($url, $method = 'GET', array $options = [], $returnJson = true)
     {
         $options['http_errors'] = false;
         $client                 = new Client();
-        return self::handleResponse($client->request($method, $url, $options));
+        return self::handleResponse($client->request($method, $url, $options), $returnJson);
     }
     
     /**
@@ -70,8 +70,12 @@ class Http
      * @param $request
      * @return mixed
      */
-    public static function handleResponse($request)
+    public static function handleResponse($request, $returnJson)
     {
-        return $request->getBody()->getContents();
+        $res = $request->getBody()->getContents();
+        if ($returnJson && !is_null($temp = json_decode($res, true))){
+            return $temp;
+        }
+        return $res;
     }
 }

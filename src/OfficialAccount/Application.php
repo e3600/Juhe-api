@@ -22,7 +22,10 @@ class Application extends ServiceContainer
      */
     protected $providers = [
         'Login' => Login\ServiceProvider::class,
+        'User'  => User\ServiceProvider::class,
         'Menu'  => Menu\ServiceProvider::class,
         'Media' => Media\ServiceProvider::class,
+        'Qrcode' => Qrcode\ServiceProvider::class,
+        'Other' => Other\ServiceProvider::class,
     ];
 }

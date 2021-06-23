@@ -2,40 +2,46 @@
 
 namespace JuheApi\OfficialAccount\Menu;
 
-use JuheApi\Kernel\Http;
+use JuheApi\BasicService\RequestContainer;
 
-class ServiceProvider
+class ServiceProvider extends RequestContainer
 {
-    private $config = [];
-    
     public function __construct($config = null)
     {
-        $this->config = $config;
+        parent::__construct($config);
     }
     
     public function create($menus = [])
     {
-        return Http::httpUploadV2(
+        return $this->httpPostJsonV2(
             [
                 'action' => 'createMenu',
-                'menus'  => $menus,
+                'menus'  => json_encode(['button' => $menus], JSON_UNESCAPED_UNICODE),
             ]
         );
     }
     
-    public function get()
+    /**
+     * 获取当前菜单
+     *
+     * @param bool $returnJson 是否返回JSON格式，默认为false，返回Array格式
+     * @return mixed 返回JSON格式
+     */
+    public function list($returnJson = false)
     {
-        return Http::httpPostJson(
-            sprintf('%s/k/%s', $this->config['requeseUrl'], $this->config['config_key']),
+        $res = $this->httpPostJsonV2(
             ['action' => 'getMenu']
         );
+        if (isset($res['button'])) {
+            return $returnJson ? json_encode($res['button'], JSON_UNESCAPED_UNICODE) : $res['button'];
+        }
+        return $res;
     }
     
-    public function remove()
+    public function delete()
     {
-        return Http::httpPostJson(
-            sprintf('k/%s/WxMp', $this->config['project_key']),
-            ['action' => 'getMenu']
+        return $this->httpPostJsonV2(
+            ['action' => 'delMenu']
         );
     }
 }

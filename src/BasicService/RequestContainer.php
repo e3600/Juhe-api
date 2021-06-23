@@ -13,12 +13,13 @@ class RequestContainer
         $this->config = $config;
     }
     
-    protected function httpPostJsonV2($data = [], $query = [])
+    protected function httpPostJsonV2($data = [], $query = [], $returnJson = true)
     {
         return Http::httpPostJson(
             sprintf('%s/k/%s', $this->config['requeseUrl'], $this->config['config_key']),
             $data,
-            $query
+            $query,
+            $returnJson
         );
     }
     

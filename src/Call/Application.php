@@ -11,7 +11,7 @@ class Application extends ServiceContainer
 {
     public function __construct(array $config = [], array $prepends = [], string $id = null)
     {
-        parent::__construct($config);
+        parent::__construct($config, '', true);
     }
 
     /**

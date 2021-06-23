@@ -2,21 +2,27 @@
 
 namespace JuheApi\OfficialAccount\Login;
 
-use JuheApi\Kernel\Http;
+use JuheApi\BasicService\RequestContainer;
 
-class ServiceProvider
+class ServiceProvider extends RequestContainer
 {
-    private $config = [];
     public function __construct($config = null)
     {
-        $this->config = $config;
+        parent::__construct($config);
     }
     
-    public function getToken()
+    public function create($redirect_uri='', $scope = 'snsapi_base', $state = '0')
     {
-        return Http::httpPostJson(
-            sprintf('%s/k/%s', $this->config['requeseUrl'], $this->config['config_key']),
-            ['action' => 'getToken']
+        if (!$redirect_uri && substr($redirect_uri, 0, 4) != 'http') {
+            return 'Login redirect_uri 不能为空';
+        }
+        return $this->httpPostJsonV2(
+            [
+                'action'       => 'login_create',
+                'redirect_uri' => $redirect_uri,
+                'scope'        => $scope,
+                'state'        => $state,
+            ]
         );
     }
 }

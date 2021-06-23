@@ -2,7 +2,6 @@
 
 namespace JuheApi\OfficialAccount\Media;
 
-use JuheApi\Kernel\Http;
 use JuheApi\BasicService\RequestContainer;
 
 class ServiceProvider extends RequestContainer

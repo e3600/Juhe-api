@@ -15,7 +15,7 @@ class ServiceProvider
         $this->config = $config;
     }
     
-    public function message($call, $MsgType = null)
+    public function push($call, $MsgType = null)
     {
         $message = XML::parse(file_get_contents("php://input"));
         if (!$message) {
@@ -26,11 +26,11 @@ class ServiceProvider
         // 指定消息类型
         if ($MsgType) {
             if ($message['MsgType'] == $MsgType) {
-                $call($message, new ReplyMsg($message));
+                $call($message, $_GET, new ReplyMsg($message));
             }
             
         } else {
-            $call($message, new ReplyMsg($message));
+            $call($message, $_GET, new ReplyMsg($message));
         }
     }
 }
