@@ -2,13 +2,6 @@
 
 namespace JuheApi;
 
-use JuheApi\Kernel\Env;
-
-exit(__DIR__);
-// Env::loadFile($filePath);
-
-// requese
-
 class Factory
 {
 /**

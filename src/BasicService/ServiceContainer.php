@@ -18,11 +18,12 @@ class ServiceContainer extends Container
      *
      * @param array       $config
      * @param string      $serverMark
+     * @param string      $isCheckConfigKey 是否检测config_key（公众号/小程序专用）
      * @param string|null $id
      */
-    public function __construct(array $config = [], $serverMark = '')
+    public function __construct(array $config = [], $serverMark = '', $isCheckConfigKey = false)
     {
-        $this->config = $this->initConfig($config, $serverMark);
+        $this->config = $this->initConfig($config, $serverMark, $isCheckConfigKey);
         $this->registerProviders($this->getProviders());
     }
     

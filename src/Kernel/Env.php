@@ -4,7 +4,7 @@ namespace JuheApi\Kernel;
 
 class Env
 {
-    const ENV_PREFIX = 'PHP_';
+    const ENV_PREFIX = 'JUHEAPI_';
     
     /**
      * 加载配置文件
@@ -16,7 +16,7 @@ class Env
     public static function loadFile(string $filePath): void
     {
         if (!file_exists($filePath)) {
-            throw new \Exception('配置文件' . $filePath . '不存在');
+            exit('配置文件' . $filePath . '不存在');
         }
         //返回二位数组
         $env = parse_ini_file($filePath, true);

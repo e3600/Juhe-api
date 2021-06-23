@@ -13,11 +13,13 @@ class ServiceProvider
         $this->config = $config;
     }
     
-    public function create()
+    public function create($menus = [])
     {
-        return Http::httpPostJson(
-            sprintf('k/%s/WxMp', $this->config['project_key']),
-            ['action' => 'getToken']
+        return Http::httpUploadV2(
+            [
+                'action' => 'createMenu',
+                'menus'  => $menus,
+            ]
         );
     }
     
