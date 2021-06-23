@@ -8,6 +8,9 @@ class ReplyMsg
 {
     use Text;
     use Image;
+    use Voice;
+    use Video;
+    use Music;
     use ImageText;
     
     protected $message;

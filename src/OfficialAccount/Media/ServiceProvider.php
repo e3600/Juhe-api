@@ -42,7 +42,7 @@ class ServiceProvider extends RequestContainer
                 'action'   => 'media_upload',
                 'type'     => 'image',
                 'kind'     => $kind,
-                'filename' => '1.png',
+                'filename' => pathinfo($path, PATHINFO_BASENAME),
             ]
         );
     }
@@ -64,7 +64,7 @@ class ServiceProvider extends RequestContainer
                 'action'   => 'media_upload',
                 'type'     => 'voice',
                 'kind'     => $kind,
-                'filename' => '1.mp3',
+                'filename' => pathinfo($path, PATHINFO_BASENAME),
             ]
         );
     }
@@ -86,7 +86,29 @@ class ServiceProvider extends RequestContainer
                 'action'   => 'media_upload',
                 'type'     => 'video',
                 'kind'     => $kind,
-                'filename' => '1.mp3',
+                'filename' => pathinfo($path, PATHINFO_BASENAME),
+            ]
+        );
+    }
+    
+    /**
+     * 上传缩率图
+     *
+     * @param string $path
+     * @param int    $kind
+     * @return mixed
+     */
+    public function uploadThumb($path, $kind = 0)
+    {
+        return $this->httpUploadV2(
+            [
+                'file' => $path,
+            ],
+            [
+                'action'   => 'media_upload',
+                'type'     => 'thumb',
+                'kind'     => $kind,
+                'filename' => pathinfo($path, PATHINFO_BASENAME),
             ]
         );
     }
