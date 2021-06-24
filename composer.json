@@ -3,7 +3,7 @@
     "description": "精易科技",
     "keywords" : [ "juhe", "api"],
     "license": "MIT",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "authors": [
         {
             "name": "果子",
@@ -12,7 +12,6 @@
     ],
     "require": {
         "php": ">=7.0",
-        "ijingyi/http": ">=1.0",
         "guzzlehttp/guzzle": "^6.2 || ^7.0",
         "pimple/pimple": "^3.0",
     },
