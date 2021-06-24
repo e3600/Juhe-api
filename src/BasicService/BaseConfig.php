@@ -4,7 +4,15 @@ namespace JuheApi\BasicService;
 
 use JuheApi\Kernel\Env;
 
-Env::loadFile(__DIR__ . '/../../.env');
+$envFile = dirname(__DIR__, 5) . '/.env.juhe';
+if (!file_exists($envFile)){
+    copy(dirname(__DIR__, 2). '/env.juhe.example', $envFile);
+    echo "首次加载，请修改juheApi的配置文件: ".$envFile;
+    chmod($envFile, 0400); // 更改访问权限，禁止用户在线读取
+    exit();
+}else{
+    Env::loadFile($envFile);
+}
 
 trait BaseConfig
 {
