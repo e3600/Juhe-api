@@ -1,0 +1,12 @@
+[system]
+# 聚合API请求地址
+requeseUrl = http://lan.api.125.la/
+
+# 项目ID
+project_key = e2eb4122-b86e-11eb-ac9d-xxx
+
+# 微信公众号/小程序，同项目多服务预定义，在初始化配置时使用，具体请看文档说明
+[wxConfigKey]
+Dtz = now9m1s7s8pqmzgclzdxwi3kwysvxiidygnxxx
+DtzFsz = sp3cisakybfmpincssbheye4zney7iyph6xxx
+Python = 5r9s6z4wpicb9y61zifr3jhm5wsknyktj1sxxx
