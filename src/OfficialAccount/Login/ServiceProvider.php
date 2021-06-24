@@ -11,18 +11,45 @@ class ServiceProvider extends RequestContainer
         parent::__construct($config);
     }
     
-    public function create($redirect_uri='', $scope = 'snsapi_base', $state = '0')
+    public function create($params = [], $call)
     {
-        if (!$redirect_uri && substr($redirect_uri, 0, 4) != 'http') {
-            return 'Login redirect_uri 不能为空';
+        // 带有code的应该走到了第二步[success]
+        if (isset($_GET['code'])) {
+            return false;
         }
-        return $this->httpPostJsonV2(
+        
+        if (!$params['redirect_uri'] && substr($params['redirect_uri'], 0, 4) != 'http') {
+            $call('Login redirect_uri 不能为空');
+            return false;
+        }
+        $res = $this->httpPostJsonV2(
             [
                 'action'       => 'login_create',
-                'redirect_uri' => $redirect_uri,
-                'scope'        => $scope,
-                'state'        => $state,
+                'redirect_uri' => $params['redirect_uri'],
+                'scope'        => $params['scope'],
+                'state'        => $params['state'],
             ]
+        );
+        $call($res);
+    }
+    
+    public function success($call)
+    {
+        // 应该在create，直接返回
+        if (!isset($_GET['code'])) {
+            return false;
+        }
+        $code  = $this->input('code');
+        $state = $this->input('state');
+    }
+    
+    public function getAccessToken($code)
+    {
+        return $this->httpPostJsonV2(
+            [
+                'action' => 'login_authorization_code',
+                'code'   => $code,
+            ],[],false
         );
     }
 }

@@ -32,4 +32,15 @@ class RequestContainer
             $query
         );
     }
+    
+    protected function input($name, $defaltu = '')
+    {
+        if (isset($_GET[$name])) {
+            return addslashes($_GET[$name]);
+        } elseif (isset($_POST[$name])) {
+            return addslashes($_POST[$name]);
+        }else{
+            return $defaltu;
+        }
+    }
 }

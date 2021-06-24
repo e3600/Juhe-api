@@ -66,7 +66,7 @@ trait BaseConfig
         if (!isset($config['config_key'])) {
             return $config;
         }
-        if ($temp = Env::get('wxConfigKey.' . $config['config_key'])) {
+        if ($temp = Env::get('mpConfigKey.' . $config['config_key'])) {
             $config['config_key'] = $temp;
         }
         return $config;

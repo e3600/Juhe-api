@@ -2,6 +2,7 @@
 
 namespace JuheApi\OfficialAccount\Other;
 
+use JuheApi\Kernel\Env;
 use JuheApi\BasicService\RequestContainer;
 
 class ServiceProvider extends RequestContainer
@@ -15,8 +16,20 @@ class ServiceProvider extends RequestContainer
     {
         return $this->httpPostJsonV2(
             [
-                'action' => 'getToken'
+                'action' => 'getToken',
             ]
         );
+    }
+    
+    public function getEnv($path){
+        return Env::get($path);
+    }
+    
+    public function getEnvmpConfigKey($name){
+        return $this->getEnv('mpConfigKey.' . $name);
+    }
+    
+    public function getEnvminiConfigKey($name){
+        return $this->getEnv('miniConfigKey.' . $name);
     }
 }
