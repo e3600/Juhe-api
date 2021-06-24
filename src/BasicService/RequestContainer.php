@@ -7,10 +7,32 @@ use JuheApi\Kernel\Http;
 class RequestContainer
 {
     protected $config = [];
+    private $serverMark = '';
     
-    public function __construct($config = null)
+    public function __construct($config = null, $serverMark = '')
     {
-        $this->config = $config;
+        $this->config     = $config;
+        $this->serverMark = $serverMark;
+    }
+    
+    protected function httpPostJsonV1($data = [], $query = [], $returnJson = true)
+    {
+        return Http::httpPostJson(
+            sprintf('%s/k/%s/%s', $this->config['requeseUrl'], $this->config['project_key'], $this->serverMark),
+            $data,
+            $query,
+            $returnJson
+        );
+    }
+    
+    protected function httpUploadV1($files = [], $form = [], $query = [])
+    {
+        return Http::httpUpload(
+            sprintf('%s/k/%s/%s', $this->config['requeseUrl'], $this->config['project_key'], $this->serverMark),
+            $files,
+            $form,
+            $query
+        );
     }
     
     protected function httpPostJsonV2($data = [], $query = [], $returnJson = true)
@@ -39,7 +61,7 @@ class RequestContainer
             return addslashes($_GET[$name]);
         } elseif (isset($_POST[$name])) {
             return addslashes($_POST[$name]);
-        }else{
+        } else {
             return $defaltu;
         }
     }

@@ -9,6 +9,7 @@ use JuheApi\ReplyMsg\ReplyMsg;
 class ServiceProvider
 {
     private $config = [];
+    private $message = null;
     
     public function __construct($config = null)
     {
@@ -17,20 +18,30 @@ class ServiceProvider
     
     public function push($call, $MsgType = null)
     {
-        $message = XML::parse(file_get_contents("php://input"));
-        if (!$message) {
-            echo '消息解析失败，消息内容：' . file_get_contents("php://input");
-            return false;
+        if (!$this->message) {
+            echo '解析数据';
+            $message = file_get_contents("php://input");
+            if (!$this->message = XML::parse($message)) {
+                echo '消息解析失败，消息内容：' . $message;
+                return false;
+            }
         }
         
         // 指定消息类型
         if ($MsgType) {
-            if ($message['MsgType'] == $MsgType) {
-                $call($message, $_GET, new ReplyMsg($message));
+            // 如：event.CLICK
+            if (strpos($MsgType, '.')) {
+                list($MsgType, $Event) = explode('.', $MsgType);
+                if ($this->message['MsgType'] == $MsgType && $this->message['Event'] == $Event) {
+                    $call($this->message, $_GET, new ReplyMsg($this->message));
+                }
+
+            } else if ($this->message['MsgType'] == $MsgType) {
+                $call($this->message, $_GET, new ReplyMsg($this->message));
             }
             
         } else {
-            $call($message, $_GET, new ReplyMsg($message));
+            $call($this->message, $_GET, new ReplyMsg($this->message));
         }
     }
 }

@@ -58,7 +58,7 @@ trait BaseConfig
             $this->fail('project_key 不能为空');
             
             // 微信公众号/小程序/特有的config_key
-        } else if ($isCheckConfigKey && !isset($config['config_key']) || strlen(trim($config['config_key'])) != 40) {
+        } else if ($isCheckConfigKey && (!isset($config['config_key']) || strlen(trim($config['config_key'])) != 40)) {
             $this->fail('config_key 不能为空');
         }
     }

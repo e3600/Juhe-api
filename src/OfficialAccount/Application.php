@@ -9,7 +9,7 @@ use JuheApi\BasicService\ServiceContainer;
  */
 class Application extends ServiceContainer
 {
-    // 服务标题
+    // 服务标识
     protected $serverMark = 'WxMp';
     
     public function __construct(array $config = [], array $prepends = [], string $id = null)

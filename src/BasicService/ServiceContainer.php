@@ -58,14 +58,6 @@ class ServiceContainer extends Container
     public function getProviders()
     {
         return $this->providers;
-        // return array_merge([
-        //     ConfigServiceProvider::class,
-        //     LogServiceProvider::class,
-        //     RequestServiceProvider::class,
-        //     HttpClientServiceProvider::class,
-        //     ExtensionServiceProvider::class,
-        //     EventDispatcherServiceProvider::class,
-        // ], $this->providers);
     }
     
     /**
