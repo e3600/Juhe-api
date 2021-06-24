@@ -125,7 +125,7 @@ class ServiceProvider extends RequestContainer
                 'access_token' => $access_token,
                 'openid'       => $openid,
                 'lang'         => $lang,
-            ], [], false
+            ]
         );
     }
 }
