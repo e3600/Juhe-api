@@ -18,7 +18,7 @@ class RequestContainer
     protected function httpPostJsonV1($data = [], $query = [], $returnJson = true)
     {
         return Http::httpPostJson(
-            sprintf('%s/k/%s/%s', $this->config['requeseUrl'], $this->config['project_key'], $this->serverMark),
+            sprintf('%sk/%s/%s', $this->config['requeseUrl'], $this->config['project_key'], $this->serverMark),
             $data,
             $query,
             $returnJson
@@ -28,7 +28,7 @@ class RequestContainer
     protected function httpUploadV1($files = [], $form = [], $query = [])
     {
         return Http::httpUpload(
-            sprintf('%s/k/%s/%s', $this->config['requeseUrl'], $this->config['project_key'], $this->serverMark),
+            sprintf('%sk/%s/%s', $this->config['requeseUrl'], $this->config['project_key'], $this->serverMark),
             $files,
             $form,
             $query
