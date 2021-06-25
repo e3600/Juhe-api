@@ -29,7 +29,7 @@ class Http
             $filename = pathinfo($path, PATHINFO_BASENAME);
             $multipart[] = [
                 'name'     => $name,
-                'contents' => fopen($path, 'r'),
+                'contents' => file_exists($path) ? fopen($path, 'r') : '',
                 'headers'  => [
                     'Content-Disposition' => 'form-data; name="' . $name . '"; filename="' . $filename . '"',
                 ],
