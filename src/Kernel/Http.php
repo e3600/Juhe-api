@@ -24,22 +24,17 @@ class Http
     public static function httpUpload(string $url, array $files = [], array $form = [], array $query = [])
     {
         $multipart = [];
-        $headers   = [];
-        
-        if (isset($form['filename'])) {
-            $headers = [
-                'Content-Disposition' => 'form-data; name="file"; filename="' . $form['filename'] . '"',
-            ];
-        }
-        
+
         foreach ($files as $name => $path) {
+            $filename = pathinfo($path, PATHINFO_BASENAME);
             $multipart[] = [
                 'name'     => $name,
                 'contents' => fopen($path, 'r'),
-                'headers'  => $headers,
+                'headers'  => [
+                    'Content-Disposition' => 'form-data; name="' . $name . '"; filename="' . $filename . '"',
+                ],
             ];
         }
-        
         foreach ($form as $name => $contents) {
             $multipart[] = compact('name', 'contents');
         }
@@ -73,7 +68,7 @@ class Http
     public static function handleResponse($request, $returnJson)
     {
         $res = $request->getBody()->getContents();
-        if ($returnJson && !is_null($temp = json_decode($res, true))){
+        if ($returnJson && !is_null($temp = json_decode($res, true))) {
             return $temp;
         }
         return $res;
