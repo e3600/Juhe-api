@@ -37,9 +37,7 @@ trait BaseConfig
         }
         
         // 预处理ConfigKey
-        if ($isCheckConfigKey) {
-            $config = $this->handleConfigKey($config);
-        }
+        $config = $this->handleConfigKey($config);
         
         // 检测必要配置项
         $this->checkConfig($config, $isCheckConfigKey);

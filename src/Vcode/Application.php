@@ -27,13 +27,14 @@ class Application extends RequestContainer
         return $this->httpPostJsonV1(
             array_merge([
                 'action' => 'send',
+                'config_key' => $this->config['config_key'],
             ], $params)
         );
     }
     
     public function check($params = [])
     {
-        return $this->httpPostJsonV1(
+        return $this->httpPostJsonV2(
             array_merge([
                 'action' => 'check',
             ], $params)
