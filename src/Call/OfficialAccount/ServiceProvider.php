@@ -19,7 +19,6 @@ class ServiceProvider
     public function push($call, $MsgType = null)
     {
         if (!$this->message) {
-            echo '解析数据';
             $message = file_get_contents("php://input");
             if (!$this->message = XML::parse($message)) {
                 echo '消息解析失败，消息内容：' . $message;
@@ -27,17 +26,27 @@ class ServiceProvider
             }
         }
         
-        // 指定消息类型
-        if ($MsgType) {
+        // 指定消息类型 && 用户操作回调消息
+        if ($MsgType && isset($this->message['MsgType'])) {
             // 如：event.CLICK
             if (strpos($MsgType, '.')) {
                 list($MsgType, $Event) = explode('.', $MsgType);
                 if ($this->message['MsgType'] == $MsgType && $this->message['Event'] == $Event) {
                     $call($this->message, $_GET, new ReplyMsg($this->message));
                 }
-
+                
             } else if ($this->message['MsgType'] == $MsgType) {
                 $call($this->message, $_GET, new ReplyMsg($this->message));
+            }
+            
+        } else if (isset($this->message['mch_id']) && isset($this->message['appid'])) {
+            if ($MsgType !== 'pay') {
+                return false;
+            }
+            if ($call($this->message, $_GET, new ReplyMsg($this->message))) {
+                exit('SUCCESS');
+            } else {
+                exit('fail');
             }
             
         } else {
