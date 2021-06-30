@@ -1,6 +1,6 @@
 <?php
 
-namespace JuheApi\Call\OfficialAccount;
+namespace JuheApi\Call\MiniProgram;
 
 use JuheApi\Kernel\Http;
 use JuheApi\Kernel\XML;

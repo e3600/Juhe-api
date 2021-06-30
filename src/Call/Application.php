@@ -13,12 +13,12 @@ class Application extends ServiceContainer
     {
         parent::__construct($config, '', true);
     }
-
+    
     /**
      * @var array
      */
     protected $providers = [
         'OfficialAccount' => OfficialAccount\ServiceProvider::class,
-        // 'MiniProgram'  => MiniProgram\ServiceProvider::class,
+        'MiniProgram'     => MiniProgram\ServiceProvider::class,
     ];
 }
