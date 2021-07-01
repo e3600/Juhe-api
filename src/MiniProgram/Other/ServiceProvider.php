@@ -37,6 +37,19 @@ class ServiceProvider extends RequestContainer
         );
     }
     
+    /**
+     * 违规内容检测
+     */
+    public function msgSecCheck($content)
+    {
+        return $this->httpPostJsonV2(
+            [
+                'action'  => 'msgSecCheck',
+                'content' => $content,
+            ]
+        );
+    }
+    
     public function getEnv($path)
     {
         return Env::get($path);
