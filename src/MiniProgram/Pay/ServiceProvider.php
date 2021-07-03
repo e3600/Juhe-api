@@ -52,7 +52,7 @@ class ServiceProvider extends RequestContainer
         return $this->httpPostJsonV2(
             array_merge([
                 'action' => 'payRefund',
-            ], $params),[],false
+            ], $params)
         );
     }
     
@@ -67,7 +67,7 @@ class ServiceProvider extends RequestContainer
         return $this->httpPostJsonV2(
             array_merge([
                 'action' => 'payRefundQuery',
-            ], $params),[],false
+            ], $params)
         );
     }
     
