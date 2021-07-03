@@ -1,6 +1,6 @@
 <?php
 
-namespace JuheApi\OfficialAccount\PayScan;
+namespace JuheApi\MiniProgram\Pay;
 
 use JuheApi\BasicService\RequestContainer;
 
@@ -21,7 +21,7 @@ class ServiceProvider extends RequestContainer
     {
         return $this->httpPostJsonV2(
             array_merge([
-                'action' => 'order_create',
+                'action' => 'payCreate',
             ], $params)
         );
     }
@@ -36,7 +36,7 @@ class ServiceProvider extends RequestContainer
     {
         return $this->httpPostJsonV2(
             array_merge([
-                'action' => 'order_query',
+                'action' => 'payQuery',
             ], $params)
         );
     }
@@ -51,8 +51,8 @@ class ServiceProvider extends RequestContainer
     {
         return $this->httpPostJsonV2(
             array_merge([
-                'action' => 'order_refund',
-            ], $params)
+                'action' => 'payRefund',
+            ], $params),[],false
         );
     }
     
@@ -66,8 +66,8 @@ class ServiceProvider extends RequestContainer
     {
         return $this->httpPostJsonV2(
             array_merge([
-                'action' => 'order_refund_query',
-            ], $params)
+                'action' => 'payRefundQuery',
+            ], $params),[],false
         );
     }
     

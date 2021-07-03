@@ -4,7 +4,6 @@ namespace JuheApi\Call\MiniProgram;
 
 use JuheApi\Kernel\Http;
 use JuheApi\Kernel\XML;
-use JuheApi\ReplyMsg\ReplyMsg;
 
 class ServiceProvider
 {
@@ -28,29 +27,26 @@ class ServiceProvider
         
         // 指定消息类型 && 用户操作回调消息
         if ($MsgType && isset($this->message['MsgType'])) {
-            // 如：event.CLICK
-            if (strpos($MsgType, '.')) {
-                list($MsgType, $Event) = explode('.', $MsgType);
-                if ($this->message['MsgType'] == $MsgType && $this->message['Event'] == $Event) {
-                    $call($this->message, $_GET, new ReplyMsg($this->message));
-                }
-                
-            } else if ($this->message['MsgType'] == $MsgType) {
-                $call($this->message, $_GET, new ReplyMsg($this->message));
+            if ($this->message['MsgType'] == $MsgType) {
+                $call($this->message, $_GET);
+                exit();
             }
             
-        } else if (isset($this->message['mch_id']) && isset($this->message['appid'])) {
+            // 支付回调
+        } else if (isset($this->message['mch_id']) && isset($this->message['appid']) && isset($this->message['total_fee'])) {
             if ($MsgType !== 'pay') {
                 return false;
             }
-            if ($call($this->message, $_GET, new ReplyMsg($this->message))) {
+            if ($call($this->message, $_GET)) {
                 exit('SUCCESS');
             } else {
                 exit('FAIL');
             }
             
         } else {
-            $call($this->message, $_GET, new ReplyMsg($this->message));
+            
+            $call($this->message, $_GET);
+            exit();
         }
     }
 }

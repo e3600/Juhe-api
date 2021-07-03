@@ -39,6 +39,7 @@ class ServiceProvider
                 $call($this->message, $_GET, new ReplyMsg($this->message));
             }
             
+            // 支付回调
         } else if (isset($this->message['mch_id']) && isset($this->message['appid'])) {
             if ($MsgType !== 'pay') {
                 return false;
