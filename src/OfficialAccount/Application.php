@@ -28,6 +28,7 @@ class Application extends ServiceContainer
         'Qrcode'   => Qrcode\ServiceProvider::class,
         'Template' => Template\ServiceProvider::class,
         'PayScan'  => PayScan\ServiceProvider::class,
+        'Redpack'  => Redpack\ServiceProvider::class,
         'Other'    => Other\ServiceProvider::class,
     ];
 }

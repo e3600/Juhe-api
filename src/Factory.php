@@ -35,4 +35,16 @@ class Factory
         $value = ucwords(str_replace(['-', '_'], ' ', $value));
         return str_replace(' ', '', $value);
     }
+    /**
+     * 生成订单号
+     *
+     * @return string
+     */
+    public static function generateOrderId()
+    {
+        $first  = time() . mt_rand(100, 999);
+        $second = substr(sha1(uniqid() . $first), -4);
+        $third  = substr(sha1(uniqid() . $second), 0, 2);
+        return strtoupper($first . $third . $second);
+    }
 }
