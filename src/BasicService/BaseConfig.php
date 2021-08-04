@@ -36,6 +36,13 @@ trait BaseConfig
             }
         }
         
+        // 聚合权限项目ID
+        if (!isset($config['project_auth_key']) || !$config['project_auth_key']) {
+            if ($project_auth_key = Env::get('system.project_auth_key')) {
+                $config['project_auth_key'] = $project_auth_key;
+            }
+        }
+      
         // 预处理ConfigKey
         $config = $this->handleConfigKey($config);
         
