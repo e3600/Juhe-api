@@ -11,11 +11,32 @@ use JuheApi\BasicService\RequestContainer;
  */
 class Application extends RequestContainer
 {
+  use Can;
+  use Common;
   use Response;
   use BaseConfig;
   
+  private $frame = '未知框架，无法使用';  // 框架
+  
   public function __construct(array $config = [], array $prepends = [], string $id = null)
   {
+    // 框架类型
+    if (!isset($config['frame'])) {
+      if (defined('IN_DISCUZ')) {
+        $this->frame = 'discuz';
+      } else if (function_exists('auth') && function_exists('route')) {
+        $this->frame = 'lumen';
+      } else {
+        exit($this->frame);
+      }
+    } else {
+      if (in_array($config['frame'], ['discuz', 'lumen'])) {
+        $this->frame = $config['frame'];
+      } else {
+        exit($this->frame);
+      }
+    }
+    
     parent::__construct($this->initConfig($config, ''), '');
   }
   
@@ -79,7 +100,7 @@ class Application extends RequestContainer
       [
         'action'    => 'role_mark_get_auth',
         'role_mark' => $role_mark,
-      ],[],false
+      ], [], false
     );
   }
 }
