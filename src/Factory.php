@@ -18,6 +18,7 @@ namespace JuheApi;
  * @method static \JuheApi\Video\Application                  Video(array $config)
  * @method static \JuheApi\Image\Application                  Image(array $config)
  * @method static \JuheApi\Common\Application                 Common(array $config)
+ * @method static \JuheApi\Alipay\Application                 Alipay(array $config)
  */
 class Factory
 {
