@@ -19,6 +19,7 @@ namespace JuheApi;
  * @method static \JuheApi\Image\Application                  Image(array $config)
  * @method static \JuheApi\Common\Application                 Common(array $config)
  * @method static \JuheApi\Alipay\Application                 Alipay(array $config)
+ * @method static \JuheApi\OneDrive\Application               OneDrive(array $config)
  */
 class Factory
 {
