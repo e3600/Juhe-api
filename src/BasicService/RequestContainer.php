@@ -27,7 +27,7 @@ class RequestContainer
   {
     return Http::httpPostJson(
       sprintf('%sam/%s', $this->config['requeseUrl'], $this->config['project_auth_key']),
-      $data,
+      array_merge($data, ['debug' => $this->config['debug']]),
       $query,
       $returnJson
     );
@@ -45,7 +45,7 @@ class RequestContainer
   {
     return Http::httpPostJson(
       sprintf('%sk/%s/%s', $this->config['requeseUrl'], $this->config['project_key'], $this->serverMark),
-      $data,
+      array_merge($data, ['debug' => $this->config['debug']]),
       $query,
       $returnJson
     );
@@ -64,7 +64,7 @@ class RequestContainer
     return Http::httpUpload(
       sprintf('%sk/%s/%s', $this->config['requeseUrl'], $this->config['project_key'], $this->serverMark),
       $files,
-      $form,
+      array_merge($form, ['debug' => $this->config['debug']]),
       $query
     );
   }
@@ -81,7 +81,7 @@ class RequestContainer
   {
     return Http::httpPostJson(
       sprintf('%sk/%s', $this->config['requeseUrl'], $this->config['config_key']),
-      $data,
+      array_merge($data, ['debug' => $this->config['debug']]),
       $query,
       $returnJson
     );
@@ -100,7 +100,7 @@ class RequestContainer
     return Http::httpUpload(
       sprintf('%sk/%s', $this->config['requeseUrl'], $this->config['config_key']),
       $files,
-      $form,
+      array_merge($form, ['debug' => $this->config['debug']]),
       $query
     );
   }
