@@ -90,6 +90,32 @@ class Application extends RequestContainer
     ]);
   }
   
+  /**
+   * 通过文件路径，取文件信息
+   *
+   * @param string $fileId
+   * @return mixed
+   */
+  public function getFileInfo($filepath)
+  {
+    return $this->common('getFileInfo', [
+      'filepath' => $filepath,
+    ]);
+  }
+  
+  /**
+   * 通过文件路径，判断文件是否存在
+   *
+   * @param string $fileId
+   * @return mixed
+   */
+  public function has($filepath)
+  {
+    return $this->common('has', [
+      'filepath' => $filepath,
+    ]);
+  }
+  
   private function common($action, $params = [])
   {
     
