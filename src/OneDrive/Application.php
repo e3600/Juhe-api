@@ -109,9 +109,9 @@ class Application extends RequestContainer
    * @param string $fileId
    * @return mixed
    */
-  public function has($filepath)
+  public function fileExist($filepath)
   {
-    return $this->common('has', [
+    return $this->common('fileExist', [
       'filepath' => $filepath,
     ]);
   }
