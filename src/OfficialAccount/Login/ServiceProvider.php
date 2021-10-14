@@ -26,7 +26,7 @@ class ServiceProvider extends RequestContainer
     });
     
     // 取Token && getUserInfo
-    isset($_GET['code']) && $this->autoSuccess($call);
+    isset($_GET['code']) && $this->autoSuccess($call, $params['scope'] == 'snsapi_userinfo');
   }
   
   public function create($params = [], $call = null)
@@ -61,7 +61,7 @@ class ServiceProvider extends RequestContainer
     return ['authUrl' => $res['data']];
   }
   
-  private function autoSuccess($call)
+  private function autoSuccess($call, $getUserinfo = false)
   {
     $res = $this->getAccessToken($this->input('code'));
     if (!isset($res['success'])) {
@@ -69,12 +69,16 @@ class ServiceProvider extends RequestContainer
       return;
     }
     
-    $userInfo = $this->getUserInfo($res['access_token'], $res['openid']);
-    if (!isset($res['success'])) {
-      $call(['message' => $res['message'] ?? 'getAccessToken fail']);
-      return;
+    if ($getUserinfo) {
+      $userInfo = $this->getUserInfo($res['access_token'], $res['openid']);
+      if (!isset($res['success'])) {
+        $call(['message' => $res['message'] ?? 'getAccessToken fail']);
+        return;
+      }
+      $call(['state' => $this->input('state'), 'userinfo' => $userInfo]);
+    } else {
+      $call(['state' => $this->input('state'), 'userinfo' => $res]);
     }
-    $call(['state' => $this->input('state'), 'userinfo' => $userInfo]);
   }
   
   /**
