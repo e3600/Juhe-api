@@ -41,7 +41,7 @@ class ServiceProvider extends RequestContainer
     return $this->httpPostJsonV2(
       [
         'action' => 'getJsTicket',
-      ], [], false
+      ], []
     );
   }
   
@@ -51,7 +51,7 @@ class ServiceProvider extends RequestContainer
       [
         'action' => 'getSignPackage',
         'url'    => $url,
-      ], [], false
+      ], []
     );
   }
 }

@@ -2,6 +2,8 @@
 
 namespace JuheApi;
 
+use EasyWeChat\Kernel\ServiceContainer;
+
 /**
  * Class Factory
  *
@@ -28,7 +30,7 @@ class Factory
    * @param string $name
    * @param array  $config
    *
-   * @return \EasyWeChat\Kernel\ServiceContainer
+   * @return ServiceContainer
    */
   public static function make($name, $config = [])
   {
@@ -43,7 +45,7 @@ class Factory
    * @param string $name
    * @param array  $arguments
    *
-   * @return mixed
+   * @return ServiceContainer
    */
   public static function __callStatic($name, $arguments)
   {

@@ -9,26 +9,27 @@ use JuheApi\BasicService\ServiceContainer;
  */
 class Application extends ServiceContainer
 {
-    // 服务标识
-    protected $serverMark = 'WxMp';
-    
-    public function __construct(array $config = [], array $prepends = [], string $id = null)
-    {
-        parent::__construct($config, $this->serverMark, true);
-    }
-    
-    /**
-     * @var array
-     */
-    protected $providers = [
-        'Login'    => Login\ServiceProvider::class,
-        'User'     => User\ServiceProvider::class,
-        'Menu'     => Menu\ServiceProvider::class,
-        'Media'    => Media\ServiceProvider::class,
-        'Qrcode'   => Qrcode\ServiceProvider::class,
-        'Template' => Template\ServiceProvider::class,
-        'PayScan'  => PayScan\ServiceProvider::class,
-        'Redpack'  => Redpack\ServiceProvider::class,
-        'Other'    => Other\ServiceProvider::class,
-    ];
+  // 服务标识
+  protected $serverMark = 'WxMp';
+  
+  public function __construct(array $config = [], array $prepends = [], string $id = null)
+  {
+    parent::__construct($config, $this->serverMark, true);
+  }
+  
+  /**
+   * @var array
+   */
+  protected $providers = [
+    'Login'    => Login\ServiceProvider::class,
+    'User'     => User\ServiceProvider::class,
+    'Menu'     => Menu\ServiceProvider::class,
+    'Media'    => Media\ServiceProvider::class,
+    'Qrcode'   => Qrcode\ServiceProvider::class,
+    'Template' => Template\ServiceProvider::class,
+    'PayScan'  => PayScan\ServiceProvider::class,
+    'Redpack'  => Redpack\ServiceProvider::class,
+    'Other'    => Other\ServiceProvider::class,
+    'Ocr'      => Ocr\ServiceProvider::class,
+  ];
 }
