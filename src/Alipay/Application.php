@@ -21,6 +21,8 @@ class Application extends ServiceContainer
      * @var array
      */
     protected $providers = [
-        'uniTransfer'    => uniTransfer\ServiceProvider::class,
+        'uniTransfer' => uniTransfer\ServiceProvider::class,
+        'Recharge'    => Recharge\ServiceProvider::class,
+        'Realname'    => Realname\ServiceProvider::class,
     ];
 }
