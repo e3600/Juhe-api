@@ -58,4 +58,20 @@ class ServiceProvider extends RequestContainer
             ], $params)
         );
     }
+    
+    /**
+     * 检验签名
+     *
+     * @remark 如：支付宝在线充值成功后，302跳回原网站，需要校验数据是否被篡改，内部会去除无用的POST参数
+     * @param array $params
+     * @return mixed
+     */
+    public function checkSign($params = [])
+    {
+        return $this->httpPostJsonV2(
+            array_merge([
+                'action' => 'checkSign',
+            ], $params)
+        );
+    }
 }
